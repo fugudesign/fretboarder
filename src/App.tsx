@@ -1,26 +1,16 @@
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { deepPurple, lime } from '@mui/material/colors';
-
 import { AppContextProvider } from './contexts/appContext';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/system/Unstable_Grid';
 import Navbar from 'src/components/Navbar/Navbar';
+import { ThemeProvider } from '@mui/material/styles';
 import Viewer from 'src/components/Viewer/Viewer';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: {
-      main: lime[900],
-    },
-  },
-});
+import theme from './config/theme';
 
 export function App() {
   return (
     <AppContextProvider>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navbar />
         <Container maxWidth="xl">
