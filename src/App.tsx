@@ -20,7 +20,7 @@ export function App() {
         <CssBaseline />
         <Navbar />
         <Container maxWidth="xl">
-          <Grid container spacing={2} marginTop={2}>
+          <Grid container spacing={2} marginTop={5}>
             <Grid xs display="flex" justifyContent="center">
               <Viewer />
             </Grid>

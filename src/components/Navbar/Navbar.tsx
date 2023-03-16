@@ -4,15 +4,10 @@ import Button from '@mui/material/Button';
 import { FC } from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import clsx from 'clsx';
-import necks from 'src/config/necks';
+import { neckTypes } from 'src/config/necks';
 import { useAppContext } from 'src/contexts/appContext';
 
-type Props = Record<string, never>;
-
-const neckTypes = Object.keys(necks) as NeckType[];
-
-const Navbar: FC = (props: Props) => {
+const Navbar: FC = () => {
   const { type, setType } = useAppContext();
 
   return (

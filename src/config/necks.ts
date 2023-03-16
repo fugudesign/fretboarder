@@ -95,4 +95,6 @@ const necks = {
 
 export type Necks = keyof typeof necks;
 
+export const neckTypes = Object.keys(necks) as NeckType[];
+
 export default necks;
