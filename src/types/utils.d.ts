@@ -11,6 +11,16 @@ declare global {
   type AsConstEnum<T> = {
     [K in keyof T]: K;
   };
+
+  // Mui Sx
+  type Sx = SxProps<Theme>;
+  type Sxs = Record<string, Sx>;
+  interface WithSx {
+    sx?: Sx;
+  }
+
+  // Base props for components
+  type CProps<P = unknown> = P & WithSx & HTMLAttributes<HTMLDivElement>;
 }
 
 export {};

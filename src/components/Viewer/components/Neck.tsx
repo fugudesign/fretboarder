@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import { FC } from 'react';
 import clsx from 'clsx';
 import sx from '../Viewer.styles';
+import { useAppContext } from 'src/contexts/appContext';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 
 type Props = {
@@ -10,6 +11,8 @@ type Props = {
 
 const Neck: FC<Props> = ({ type = 'classic' }) => {
   const { config, stringPositions, fretPositions } = useGuitarConfig(type);
+  const { tuning } = useAppContext();
+  const notes = [...tuning].reverse();
 
   const fingerboard = (
     <rect
@@ -79,12 +82,23 @@ const Neck: FC<Props> = ({ type = 'classic' }) => {
         className="string"
         key={`string-${i}`}
         id={`string-${i}`}
-        x1={fretPositions[0] - 20}
+        x1={fretPositions[0] - 15}
         y1={pos}
         x2={config.board.width}
         y2={pos}
         strokeWidth={config.strings.sizes[i]}
       />
+    );
+  });
+
+  const tuningNotes = stringPositions.map((pos, i) => {
+    return (
+      <g key={`tuningNote-${i}`} id={`tuningNote-${i}`} className="tuningNote">
+        <circle cx={fretPositions[0] - 40} cy={pos} r={10} />
+        <text x={fretPositions[0] - 45} y={pos + 5}>
+          {notes[i]}
+        </text>
+      </g>
     );
   });
 
@@ -100,6 +114,7 @@ const Neck: FC<Props> = ({ type = 'classic' }) => {
         {markers}
         {frets}
         {strings}
+        {tuningNotes}
       </svg>
     </Box>
   );

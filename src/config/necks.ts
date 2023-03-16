@@ -18,6 +18,9 @@ const classic: NeckConfig = {
     sizes: [0.5, 1, 1.5, 2, 2, 3],
     margin: 10,
   },
+  defaults: {
+    tuning: ['E', 'A', 'D', 'G', 'B', 'E'],
+  },
 };
 
 const lapsteel: NeckConfig = {
@@ -39,6 +42,9 @@ const lapsteel: NeckConfig = {
   strings: {
     sizes: [0.5, 1, 1.5, 2, 2, 3],
     margin: 10,
+  },
+  defaults: {
+    tuning: ['D', 'A', 'D', 'F#', 'A', 'D'],
   },
 };
 
@@ -62,6 +68,9 @@ const bass: NeckConfig = {
     sizes: [1, 2, 3, 4],
     margin: 10,
   },
+  defaults: {
+    tuning: ['E', 'A', 'D', 'G'],
+  },
 };
 
 const ukulele: NeckConfig = {
@@ -83,6 +92,9 @@ const ukulele: NeckConfig = {
   strings: {
     sizes: [0.5, 1, 2, 1],
     margin: 10,
+  },
+  defaults: {
+    tuning: ['G', 'C', 'E', 'A'],
   },
 };
 

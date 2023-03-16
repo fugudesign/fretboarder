@@ -1,3 +1,5 @@
+import { SxProps, Theme } from '@mui/material';
+
 export default {
   root: {
     display: 'flex',
@@ -27,5 +29,19 @@ export default {
     '& .string': {
       stroke: '#DDD',
     },
+    '& .tuningNote': {
+      position: 'relative',
+
+      '& circle': {
+        fill: (theme: Theme) => theme.palette.primary.main,
+      },
+      '& text': {
+        position: 'relative',
+        fill: (theme: Theme) => theme.palette.primary.contrastText,
+        stroke: (theme: Theme) => theme.palette.primary.contrastText,
+        strokeWidth: 0.5,
+        fontSize: '0.95em',
+      },
+    },
   },
-};
+} as Sxs;

@@ -60,7 +60,12 @@ export function useStorage<T>(
       setStoredValue(getInitialValue());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key]);
+  }, [key, currentKey]);
+
+  useEffect(() => {
+    setValue(getInitialValue());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return [storedValue, setValue] as const;
 }

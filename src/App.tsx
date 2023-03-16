@@ -1,4 +1,5 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { deepPurple, lime } from '@mui/material/colors';
 
 import { AppContextProvider } from './contexts/appContext';
 import Container from '@mui/material/Container';
@@ -10,6 +11,9 @@ import Viewer from 'src/components/Viewer/Viewer';
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
+    primary: {
+      main: lime[900],
+    },
   },
 });
 
