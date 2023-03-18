@@ -1,4 +1,4 @@
-import { SxProps, Theme } from '@mui/material';
+import { Theme } from '@mui/material';
 
 export default {
   root: {

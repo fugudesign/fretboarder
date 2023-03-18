@@ -6,7 +6,10 @@ export default {
     position: 'relative',
   },
   toolbar: {
-    height: (theme: Theme) => theme.spacing(15),
+    height: {
+      xs: 60,
+      md: 140,
+    },
   },
   background: {
     position: 'absolute',
@@ -32,8 +35,14 @@ export default {
     background: 'transparent',
   },
   brand: {
-    ml: 5,
-    fontSize: 35,
+    ml: {
+      xs: 0,
+      md: 5,
+    },
+    fontSize: {
+      xs: 25,
+      md: 35,
+    },
     fontWeight: 900,
     letterSpacing: '-0.04em',
   },
