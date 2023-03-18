@@ -8,6 +8,9 @@ const theme = createTheme({
       main: lime[900],
     },
   },
+  typography: {
+    fontFamily: "'Circular Std', sans-serif",
+  },
 });
 
 export default theme;

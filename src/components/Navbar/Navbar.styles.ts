@@ -1,19 +1,40 @@
 import { Theme } from '@mui/material';
 
 export default {
-  root: {},
-  button: {
-    '&.active': {
-      '&:after': {
-        content: "''",
-        position: 'absolute',
-        top: '50%',
-        left: (theme: Theme) => theme.spacing(1),
-        right: (theme: Theme) => theme.spacing(1),
-        marginTop: '1em',
-        height: '1px',
-        background: '#FFF',
-      },
-    },
+  root: {
+    flexGrow: 1,
+    position: 'relative',
+  },
+  toolbar: {
+    height: (theme: Theme) => theme.spacing(15),
+  },
+  background: {
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    bottom: 0,
+    width: '50%',
+    backgroundPosition: 'center right',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    mixBlendMode: 'color-dodge',
+  },
+  left: {
+    display: 'flex',
+    flexGrow: 1,
+    flexDirection: 'row',
+    alignItems: 'baseline',
+  },
+  version: {
+    marginLeft: (theme: Theme) => theme.spacing(1),
+    fontSize: '0.6em',
+    letterSpacing: '0.08em',
+    background: 'transparent',
+  },
+  brand: {
+    ml: 5,
+    fontSize: 35,
+    fontWeight: 900,
+    letterSpacing: '-0.04em',
   },
 } as Sxs;

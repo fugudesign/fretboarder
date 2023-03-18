@@ -94,8 +94,15 @@ const Neck: FC<Props> = ({ type = 'classic' }) => {
   const tuningNotes = stringPositions.map((pos, i) => {
     return (
       <g key={`tuningNote-${i}`} id={`tuningNote-${i}`} className="tuningNote">
-        <circle cx={fretPositions[0] - 40} cy={pos} r={10} />
-        <text x={fretPositions[0] - 45} y={pos + 5}>
+        <rect
+          x={fretPositions[0] - 62}
+          y={pos - 10}
+          rx={10}
+          ry={10}
+          width={30}
+          height={20}
+        />
+        <text x={fretPositions[0] - 55} y={pos + 5}>
           {notes[i]}
         </text>
       </g>

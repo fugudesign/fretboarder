@@ -12,6 +12,7 @@
     "module": "esnext",
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "jsx": "react-jsx",
