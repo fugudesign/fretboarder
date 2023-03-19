@@ -1,7 +1,7 @@
 const classic: NeckConfig = {
   board: {
     width: 1200,
-    height: 150,
+    height: 180,
   },
   markers: {
     numbers: [3, 5, 7, 9, 12, 15, 17, 19],
@@ -26,7 +26,7 @@ const classic: NeckConfig = {
 const lapsteel: NeckConfig = {
   board: {
     width: 1200,
-    height: 150,
+    height: 180,
   },
   markers: {
     numbers: [3, 5, 7, 9, 12, 15, 17, 19],
@@ -51,7 +51,7 @@ const lapsteel: NeckConfig = {
 const bass: NeckConfig = {
   board: {
     width: 1200,
-    height: 100,
+    height: 130,
   },
   markers: {
     numbers: [3, 5, 7, 9, 12, 15, 17, 19],
@@ -76,7 +76,7 @@ const bass: NeckConfig = {
 const ukulele: NeckConfig = {
   board: {
     width: 1200,
-    height: 120,
+    height: 150,
   },
   markers: {
     numbers: [5, 7, 9, 12, 15],
