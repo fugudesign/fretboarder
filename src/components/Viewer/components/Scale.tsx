@@ -1,14 +1,15 @@
 import Note, { noteSize } from './Note';
 
 import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 import { FC } from 'react';
-import { notes } from 'src/config/tunings';
+import { notes } from 'src/config/notes';
 import sx from '../Viewer.styles';
 import { useAppContext } from 'src/contexts/appContext';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 
 const Scale: FC = () => {
-  const { type, tuning, tonic } = useAppContext();
+  const { type, tuning, tonic, modeNotes } = useAppContext();
   const { config, stringPositions, fretPositions } = useGuitarConfig(type);
   const tuningNotes = [...tuning].reverse();
 
@@ -26,6 +27,8 @@ const Scale: FC = () => {
           noteOffset;
   };
 
+  const isNoteInMode = (note: Note) => modeNotes.includes(note);
+
   const renderStringNotes = (string: Note, i: number) => {
     const fretCount = config.frets.count + 1;
     const idx = notes.findIndex((n) => n === string);
@@ -34,36 +37,49 @@ const Scale: FC = () => {
     const rebased = [...fromIdx, ...beforeIdx];
     const stringNotes = [...rebased, ...rebased].slice(0, fretCount);
 
-    return stringNotes.map((n, ni) => (
-      <Note
-        key={`s${i}${string}-n${ni}${n}`}
-        className="note"
-        variant={tonic === n ? 'tonic' : 'default'}
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: calculatePosition(ni),
-        }}
-        emptyString={!ni}
-        note={n}
-      />
-    ));
+    return stringNotes.map(
+      (n, ni) =>
+        (ni === 0 || isNoteInMode(n)) && (
+          <Note
+            key={`s${i}${string}-n${ni}${n}`}
+            className="note"
+            variant={tonic === n ? 'tonic' : 'default'}
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: calculatePosition(ni),
+            }}
+            emptyString={!ni}
+            note={n}
+          />
+        )
+    );
   };
 
   return (
     <Box sx={sx.scale}>
+      <Box className="fretNumbers">
+        {config.markers.numbers.map((m) => (
+          <Box
+            className="fretMarker"
+            key={`marker-${m}`}
+            sx={{
+              left:
+                fretPositions[m - 1] +
+                (fretPositions[m] - fretPositions[m - 1]) /
+                  (type === 'lapsteel' ? 1 : 2),
+            }}
+          >
+            {m}
+          </Box>
+        ))}
+      </Box>
       {tuningNotes.map((string: Note, si) => (
         <Box
           key={`s${si}${string}-line`}
           className="string"
           sx={{
-            position: 'absolute',
             top: stringPositions[si] - noteSize / 2,
-            left: 0,
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'flex-start',
-            height: noteSize,
           }}
         >
           {renderStringNotes(string, si)}

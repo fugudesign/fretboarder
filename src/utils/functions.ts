@@ -1,4 +1,4 @@
-import { specialChars } from 'src/config/tunings';
+import { specialChars } from 'src/config/notes';
 
 export const _note = (note: Note) => {
   return note.replace(/#/g, `<i>♯</i>`);

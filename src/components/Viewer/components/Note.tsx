@@ -1,4 +1,5 @@
 import Box, { BoxProps } from '@mui/material/Box';
+import { brown, grey } from '@mui/material/colors';
 
 import { FC } from 'react';
 import clsx from 'clsx';
@@ -24,6 +25,16 @@ const Note: FC<Props> = ({
 
   const colorSx = {
     default: {
+      color: grey[900],
+      bgcolor: brown['A200'],
+      '&.emptyString': {
+        color: `primary.contrastText`,
+        bgcolor: `transparent`,
+        border: `2px solid`,
+        borderColor: `primary.main`,
+      },
+    },
+    tonic: {
       color: `secondary.contrastText`,
       bgcolor: `secondary.main`,
       '&.emptyString': {
@@ -31,16 +42,6 @@ const Note: FC<Props> = ({
         bgcolor: `transparent`,
         border: `2px solid`,
         borderColor: `secondary.main`,
-      },
-    },
-    tonic: {
-      color: `primary.contrastText`,
-      bgcolor: `primary.main`,
-      '&.emptyString': {
-        color: `primary.contrastText`,
-        bgcolor: `transparent`,
-        border: `2px solid`,
-        borderColor: `primary.main`,
       },
     },
   };

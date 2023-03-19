@@ -4,7 +4,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { FC } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import { notes } from 'src/config/tunings';
+import { notes } from 'src/config/notes';
 import { useAppContext } from 'src/contexts/appContext';
 
 type Props = {

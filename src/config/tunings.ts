@@ -1,20 +1,3 @@
-export const specialChars = ['#'];
-
-export const notes = [
-  'C',
-  'C#',
-  'D',
-  'D#',
-  'E',
-  'F',
-  'F#',
-  'G',
-  'G#',
-  'A',
-  'A#',
-  'B',
-];
-
 export const allTunings = [
   ['A', 'A', 'D', 'D', 'G', 'B', 'E'],
   ['A', 'A', 'D', 'G', 'B', 'E'],

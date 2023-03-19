@@ -1,4 +1,5 @@
 import { Theme } from '@mui/material';
+import { noteSize } from './components/Note';
 
 export default {
   root: {
@@ -16,8 +17,37 @@ export default {
     right: 0,
     bottom: 0,
     overflow: 'visible',
-    '& .string': {},
+    '& .string': {
+      position: 'absolute',
+      left: 0,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      height: noteSize,
+    },
     '& .note': {},
+    '& .fretNumbers': {
+      position: 'absolute',
+      top: -(noteSize * 1.5),
+      left: 0,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      height: noteSize,
+    },
+    '& .fretMarker': {
+      position: 'absolute',
+      transform: 'translateX(-50%)',
+      borderRadius: '50%',
+      width: noteSize,
+      height: noteSize,
+      backgroundColor: '#402f1f',
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontFamily: "'Instagram Sans Condensed', sans-serif",
+      fontWeight: 800,
+    },
   },
   neck: {
     '& .fingerboard': {
@@ -27,7 +57,7 @@ export default {
       fill: 'transparent',
     },
     '& .marker': {
-      fill: '#af967c',
+      fill: '#FFF',
     },
     '& .fret': {
       stroke: '#AAA',

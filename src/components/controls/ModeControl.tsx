@@ -28,9 +28,14 @@ const ModeControl: FC<Props> = ({ size, variant }) => {
         id="mode-control"
         value={mode}
         onChange={handleChange}
+        sx={{ textTransform: 'capitalize' }}
       >
         {modes.map((mode) => (
-          <MenuItem key={mode} value={mode}>
+          <MenuItem
+            key={mode}
+            value={mode}
+            sx={{ textTransform: 'capitalize' }}
+          >
             {mode}
           </MenuItem>
         ))}

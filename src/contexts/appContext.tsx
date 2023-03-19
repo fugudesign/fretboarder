@@ -6,8 +6,10 @@ import {
   useEffect,
   useMemo,
 } from 'react';
+import { HalfToneInterval, modesHTIntervals } from 'src/config/modes';
 import { fourStrings, sixStrings } from 'src/config/tunings';
 
+import { notes } from 'src/config/notes';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 import { useStorage } from 'src/hooks/useStorage';
 import { version } from '../../package.json';
@@ -17,13 +19,14 @@ export type AppContextType = {
   type: NeckType;
   setType: Dispatch<SetStateAction<NeckType>>;
   config: NeckConfig;
+  tunings: TuningType[];
   tuning: TuningType;
   setTuning: Dispatch<SetStateAction<TuningType>>;
-  tunings: TuningType[];
   tonic: Note | '';
   setTonic: Dispatch<SetStateAction<Note | ''>>;
   mode: Mode | '';
   setMode: Dispatch<SetStateAction<Mode | ''>>;
+  modeNotes: Note[];
 };
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -58,6 +61,19 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
     }
   }, [type]);
 
+  const modeNotes = useMemo(() => {
+    const tonicIndex = notes.findIndex((n) => n === tonic);
+    const fromTonic = notes.slice(tonicIndex, notes.length);
+    const beforeTonic = notes.slice(0, tonicIndex);
+    const tonicSorted = [...fromTonic, ...beforeTonic];
+    const modeHalfToneInterval = modesHTIntervals[mode as Mode];
+    return tonicSorted.reduce(
+      (res, n, i) => (modeHalfToneInterval.includes(i) ? [...res, n] : res),
+      [] as Note[]
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [type, tuning, mode]);
+
   useEffect(() => {
     if (!tuning) {
       setTuning(config.defaults.tuning);
@@ -79,6 +95,7 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
         setTonic,
         mode,
         setMode,
+        modeNotes,
       }}
       {...props}
     >
