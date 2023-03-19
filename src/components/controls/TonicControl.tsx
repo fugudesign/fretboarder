@@ -29,6 +29,7 @@ const TonicControl: FC<Props> = ({ size, variant }) => {
         value={tonic}
         onChange={handleChange}
       >
+        <MenuItem value="">None</MenuItem>
         {notes.map((note) => (
           <MenuItem key={note} value={note}>
             {note}
