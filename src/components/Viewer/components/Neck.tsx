@@ -8,7 +8,6 @@ import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 const Neck: FC = () => {
   const { type, tuning } = useAppContext();
   const { config, stringPositions, fretPositions } = useGuitarConfig(type);
-  const notes = [...tuning].reverse();
 
   const fingerboard = (
     <rect
@@ -87,24 +86,6 @@ const Neck: FC = () => {
     );
   });
 
-  const tuningNotes = stringPositions.map((pos, i) => {
-    return (
-      <g key={`tuningNote-${i}`} id={`tuningNote-${i}`} className="tuningNote">
-        <rect
-          x={fretPositions[0] - 62}
-          y={pos - 10}
-          rx={10}
-          ry={10}
-          width={30}
-          height={20}
-        />
-        <text x={fretPositions[0] - 55} y={pos + 5}>
-          {notes[i]}
-        </text>
-      </g>
-    );
-  });
-
   return (
     <Box className="neck" sx={sx.neck}>
       <svg
@@ -117,7 +98,6 @@ const Neck: FC = () => {
         {markers}
         {frets}
         {strings}
-        {tuningNotes}
       </svg>
     </Box>
   );

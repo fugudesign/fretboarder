@@ -1,17 +1,49 @@
 import Box, { BoxProps } from '@mui/material/Box';
 
-import { ColorPartial } from '@mui/material/styles/createPalette';
 import { FC } from 'react';
+import clsx from 'clsx';
 
 type Props = BoxProps &
   WithSx & {
     note: Note;
-    color?: ColorPartial;
+    variant?: 'default' | 'tonic';
+    emptyString?: boolean;
   };
 
-const Note: FC<Props> = ({ className, sx: sxProp, note, color }) => {
+export const noteSize = 25;
+
+const Note: FC<Props> = ({
+  className,
+  sx: sxProp,
+  emptyString,
+  variant,
+  note,
+}) => {
   const hasHash = /#/.test(note);
   const baseNote = note.replace(/#/g, '');
+
+  const colorSx = {
+    default: {
+      color: `secondary.contrastText`,
+      bgcolor: `secondary.main`,
+      '&.emptyString': {
+        color: `secondary.contrastText`,
+        bgcolor: `transparent`,
+        border: `2px solid`,
+        borderColor: `secondary.main`,
+      },
+    },
+    tonic: {
+      color: `primary.contrastText`,
+      bgcolor: `primary.main`,
+      '&.emptyString': {
+        color: `primary.contrastText`,
+        bgcolor: `transparent`,
+        border: `2px solid`,
+        borderColor: `primary.main`,
+      },
+    },
+  };
 
   return (
     <Box
@@ -22,15 +54,14 @@ const Note: FC<Props> = ({ className, sx: sxProp, note, color }) => {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 20,
-        height: 20,
+        width: noteSize,
+        height: noteSize,
         overflow: 'hidden',
         borderRadius: '50%',
-        color: `${color}.dark`,
-        bgcolor: `${color}.contrastText`,
         fontFamily: "'Instagram Sans Condensed', sans-serif",
-        fontSize: '0.75em',
+        fontSize: '0.9em',
         fontWeight: 600,
+        ...colorSx[variant ?? 'default'],
         '& sup': {
           fontSize: '0.6em',
           position: 'absolute',
@@ -40,7 +71,7 @@ const Note: FC<Props> = ({ className, sx: sxProp, note, color }) => {
         },
         ...sxProp,
       }}
-      className={className}
+      className={clsx(className, { emptyString })}
     >
       {baseNote}
       {hasHash && <sup>♯</sup>}

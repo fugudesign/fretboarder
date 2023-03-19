@@ -3,9 +3,7 @@ import { Theme } from '@mui/material';
 export default {
   root: {
     display: 'flex',
-    overflow: 'hidden',
     position: 'relative',
-
     '& svg': {
       display: 'block',
     },
@@ -17,7 +15,7 @@ export default {
     top: 0,
     right: 0,
     bottom: 0,
-    // border: '1px solid red',
+    overflow: 'visible',
     '& .string': {},
     '& .note': {},
   },
