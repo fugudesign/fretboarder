@@ -10,6 +10,17 @@ export default {
       display: 'block',
     },
   },
+  scale: {
+    zIndex: 5,
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    // border: '1px solid red',
+    '& .string': {},
+    '& .note': {},
+  },
   neck: {
     '& .fingerboard': {
       fill: '#402f1f',

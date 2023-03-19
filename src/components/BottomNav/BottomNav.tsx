@@ -11,12 +11,14 @@ const BottomNav: FC = () => {
     <Paper sx={sx.root} elevation={10}>
       <Container>
         <Grid container spacing={4}>
-          <Grid xs={6}>
+          <Grid xs={3}>
             <InstrumentControl size="small" />
           </Grid>
-          <Grid xs={6}>
+          <Grid xs={3}>
             <TuningControl size="small" />
           </Grid>
+          <Grid xs={3}></Grid>
+          <Grid xs={3}></Grid>
         </Grid>
       </Container>
     </Paper>

@@ -1,6 +1,6 @@
 import { AppContextProvider } from './contexts/appContext';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Layout } from './components/Layout';
+import { Layout } from './components/Layout/Layout';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './config/theme';
 

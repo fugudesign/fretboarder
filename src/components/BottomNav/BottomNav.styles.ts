@@ -2,6 +2,7 @@ import { Theme } from '@mui/material';
 
 export default {
   root: {
+    zIndex: 10,
     position: 'fixed',
     bottom: 0,
     left: 0,

@@ -16,6 +16,7 @@ export type AppContextType = {
   version: string;
   type: NeckType;
   setType: Dispatch<SetStateAction<NeckType>>;
+  config: NeckConfig;
   tuning: TuningType;
   setTuning: Dispatch<SetStateAction<TuningType>>;
   tunings: TuningType[];
@@ -70,6 +71,7 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
         version,
         type,
         setType,
+        config,
         tuning,
         setTuning,
         tunings,

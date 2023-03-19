@@ -1,7 +1,4 @@
-import FormControl, {
-  FormControlProps,
-  FormControlPropsSizeOverrides,
-} from '@mui/material/FormControl';
+import FormControl, { FormControlProps } from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import { FC } from 'react';

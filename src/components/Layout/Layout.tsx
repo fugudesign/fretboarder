@@ -1,20 +1,22 @@
 import { useMediaQuery, useTheme } from '@mui/material';
 
-import BottomNav from './BottomNav/BottomNav';
+import BottomNav from '../BottomNav/BottomNav';
+import Box from '@mui/system/Box';
 import Container from '@mui/material/Container';
 import { FC } from 'react';
 import Grid from '@mui/system/Unstable_Grid';
-import ModeControl from './controls/ModeControl';
-import Navbar from './Navbar/Navbar';
-import TonicControl from './controls/TonicControl';
-import Viewer from './Viewer/Viewer';
+import ModeControl from '../controls/ModeControl';
+import Navbar from '../Navbar/Navbar';
+import TonicControl from '../controls/TonicControl';
+import Viewer from '../Viewer/Viewer';
+import sx from './Layout.styles';
 
 export const Layout: FC = () => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <>
+    <Box sx={sx.root}>
       <Navbar />
       <Container maxWidth="xl">
         <Grid container spacing={2} marginTop={8}>
@@ -42,6 +44,6 @@ export const Layout: FC = () => {
         </Grid>
       </Container>
       <BottomNav />
-    </>
+    </Box>
   );
 };

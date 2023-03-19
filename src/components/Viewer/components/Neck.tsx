@@ -5,13 +5,9 @@ import sx from '../Viewer.styles';
 import { useAppContext } from 'src/contexts/appContext';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 
-type Props = {
-  type?: NeckType;
-};
-
-const Neck: FC<Props> = ({ type = 'classic' }) => {
+const Neck: FC = () => {
+  const { type, tuning } = useAppContext();
   const { config, stringPositions, fretPositions } = useGuitarConfig(type);
-  const { tuning } = useAppContext();
   const notes = [...tuning].reverse();
 
   const fingerboard = (

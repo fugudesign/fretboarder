@@ -1,5 +1,9 @@
 import { specialChars } from 'src/config/tunings';
 
+export const _note = (note: Note) => {
+  return note.replace(/#/g, `<i>♯</i>`);
+};
+
 export const parseTuning = (input: string) =>
   input
     .split('')
