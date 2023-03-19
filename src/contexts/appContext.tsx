@@ -66,7 +66,7 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
     const fromTonic = notes.slice(tonicIndex, notes.length);
     const beforeTonic = notes.slice(0, tonicIndex);
     const tonicSorted = [...fromTonic, ...beforeTonic];
-    const modeHalfToneInterval = modesHTIntervals[mode as Mode];
+    const modeHalfToneInterval = modesHTIntervals[mode as Mode] ?? [];
     return tonicSorted.reduce(
       (res, n, i) => (modeHalfToneInterval.includes(i) ? [...res, n] : res),
       [] as Note[]
