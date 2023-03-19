@@ -3,6 +3,7 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useMemo,
 } from 'react';
 import { fourStrings, sixStrings } from 'src/config/tunings';
@@ -55,6 +56,13 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
         return sixStrings;
     }
   }, [type]);
+
+  useEffect(() => {
+    if (!tuning) {
+      setTuning(config.defaults.tuning);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [config]);
 
   return (
     <AppContext.Provider

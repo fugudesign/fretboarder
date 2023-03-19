@@ -1,30 +1,23 @@
 import { useMediaQuery, useTheme } from '@mui/material';
 
+import BottomNav from './BottomNav/BottomNav';
 import Container from '@mui/material/Container';
-import { Controls } from './Controls/Controls';
 import { FC } from 'react';
 import Grid from '@mui/system/Unstable_Grid';
-import GuitarSwitch from './GuitarSwitch/GuitarSwitch';
+import ModeControl from './controls/ModeControl';
 import Navbar from './Navbar/Navbar';
+import TonicControl from './controls/TonicControl';
 import Viewer from './Viewer/Viewer';
 
 export const Layout: FC = () => {
   const theme = useTheme();
-
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
     <>
       <Navbar />
-      <Container maxWidth="lg">
-        <Grid container spacing={2} marginTop={isMd ? 5 : 2}>
-          <Grid xs={12} display="flex" justifyContent="center">
-            <GuitarSwitch />
-          </Grid>
-        </Grid>
-      </Container>
       <Container maxWidth="xl">
-        <Grid container spacing={2} marginTop={isMd ? 5 : 3}>
+        <Grid container spacing={2} marginTop={8}>
           <Grid xs={12} display="flex" justifyContent="center">
             <Viewer />
           </Grid>
@@ -33,10 +26,22 @@ export const Layout: FC = () => {
       <Container maxWidth="lg">
         <Grid container spacing={2} marginTop={isMd ? 5 : 3}>
           <Grid xs={12} display="flex">
-            <Controls />
+            <Container>
+              <Grid container spacing={2}>
+                <Grid xs={12} sm={3}></Grid>
+                <Grid xs={12} sm={3}>
+                  <TonicControl />
+                </Grid>
+                <Grid xs={12} sm={3}>
+                  <ModeControl />
+                </Grid>
+                <Grid xs={12} sm={3}></Grid>
+              </Grid>
+            </Container>
           </Grid>
         </Grid>
       </Container>
+      <BottomNav />
     </>
   );
 };

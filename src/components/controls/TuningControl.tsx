@@ -1,18 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC, useState } from 'react';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
 
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import { FormControlProps } from '@mui/material/FormControl';
 import { useAppContext } from 'src/contexts/appContext';
 
-const TuningControl: FC = () => {
+type Props = {
+  size?: FormControlProps['size'];
+  variant?: TextFieldProps['variant'];
+};
+
+const TuningControl: FC<Props> = ({ size, variant }) => {
   const { tunings, tuning, setTuning } = useAppContext();
   const [inputValue, setInputValue] = useState('');
 
   return (
     <Box>
       <Autocomplete
+        size={size}
         value={tuning}
         onChange={(event: any, newValue: TuningType | null) => {
           if (newValue) setTuning(newValue);
@@ -28,7 +35,14 @@ const TuningControl: FC = () => {
         }
         id="tuning-control"
         options={tunings}
-        renderInput={(params) => <TextField {...params} label="Tuning" />}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Tuning"
+            variant={variant}
+            InputProps={{ ...params.InputProps, sx: { fontWeight: 900 } }}
+          />
+        )}
         fullWidth
       />
     </Box>
