@@ -1,6 +1,6 @@
 export const specialChars = ['#'];
 
-export const notes = [
+export const noteList = [
   'C',
   'C#',
   'D',
@@ -13,4 +13,9 @@ export const notes = [
   'A',
   'A#',
   'B',
-];
+] as const;
+
+export const notes = [...noteList];
+
+export type Notes = typeof notes;
+export type Note = Notes[number];

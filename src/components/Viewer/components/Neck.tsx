@@ -6,7 +6,7 @@ import { useAppContext } from 'src/contexts/appContext';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 
 const Neck: FC = () => {
-  const { type, tuning } = useAppContext();
+  const { type } = useAppContext();
   const { config, stringPositions, fretPositions } = useGuitarConfig(type);
 
   const fingerboard = (

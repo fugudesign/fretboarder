@@ -1,5 +1,5 @@
 import { Theme } from '@mui/material';
-import { noteSize } from './components/Note';
+import { noteSize } from './components/NoteMark';
 
 export default {
   root: {

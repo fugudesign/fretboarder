@@ -1,15 +1,14 @@
-import Note, { noteSize } from './Note';
+import { Note, notes } from 'src/config/notes';
+import NoteMark, { noteSize } from './NoteMark';
 
 import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
 import { FC } from 'react';
-import { notes } from 'src/config/notes';
 import sx from '../Viewer.styles';
 import { useAppContext } from 'src/contexts/appContext';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 
 const Scale: FC = () => {
-  const { type, tuning, tonic, modeNotes } = useAppContext();
+  const { type, tuning, tonic, modeNotes, modeIntervals } = useAppContext();
   const { config, stringPositions, fretPositions } = useGuitarConfig(type);
   const tuningNotes = [...tuning].reverse();
 
@@ -29,6 +28,11 @@ const Scale: FC = () => {
 
   const isNoteInMode = (note: Note) => modeNotes.includes(note);
 
+  const noteInterval = (note: Note) => {
+    const i = modeNotes.indexOf(note);
+    return modeIntervals[i];
+  };
+
   const renderStringNotes = (string: Note, i: number) => {
     const fretCount = config.frets.count + 1;
     const idx = notes.findIndex((n) => n === string);
@@ -40,7 +44,7 @@ const Scale: FC = () => {
     return stringNotes.map(
       (n, ni) =>
         (ni === 0 || isNoteInMode(n)) && (
-          <Note
+          <NoteMark
             key={`s${i}${string}-n${ni}${n}`}
             className="note"
             variant={tonic === n ? 'tonic' : 'default'}
@@ -49,8 +53,9 @@ const Scale: FC = () => {
               top: 0,
               left: calculatePosition(ni),
             }}
-            emptyString={!ni}
+            emptyString={ni === 0}
             note={n}
+            interval={noteInterval(n)}
           />
         )
     );

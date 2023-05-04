@@ -1,39 +1,82 @@
+import {
+  blue,
+  cyan,
+  green,
+  grey,
+  indigo,
+  lightGreen,
+  orange,
+  purple,
+  red,
+  yellow,
+} from '@mui/material/colors';
+
+export type Interval =
+  | 'T'
+  | 'b2'
+  | 'M2'
+  | 'b3'
+  | 'M3'
+  | 'P4'
+  | 'b5'
+  | 'P5'
+  | 'b6'
+  | 'M6'
+  | 'b7'
+  | 'M7';
+
 /**
  * Chromatic scale with half-tone intervals
  */
 export const chromaticHTI = {
   T: 0,
-  '2m': 1,
-  '2M': 2,
-  '3m': 3,
-  '3M': 4,
-  '4j': 5,
+  b2: 1,
+  M2: 2,
+  b3: 3,
+  M3: 4,
+  P4: 5,
   b5: 6,
-  '5j': 7,
-  '6m': 8,
-  '6M': 9,
-  '7m': 10,
-  '7M': 11,
+  P5: 7,
+  b6: 8,
+  M6: 9,
+  b7: 10,
+  M7: 11,
 };
 
-export type HalfToneInterval = typeof chromaticHTI;
+export const colorsOfHTI = {
+  T: grey[900],
+  b2: yellow[500],
+  M2: yellow[600],
+  b3: red[500],
+  M3: red[600],
+  P4: cyan[500],
+  b5: orange[500],
+  P5: lightGreen[500],
+  b6: purple[500],
+  M6: purple[600],
+  b7: indigo[500],
+  M7: indigo[600],
+};
 
 export const modesIntervals = {
-  major: ['T', '2M', '3M', '4j', '5j', '6M', '7M'],
-  minor: ['T', '2M', '3m', '4j', '5j', '6m', '7m'],
-  minorMelodic: ['T', '2M', '3m', '4j', '5j', '6M', '7M'],
-  minorHarmonic: ['T', '2M', '3m', '4j', '5j', '6m', '7M'],
-  dorian: ['T', '2M', '3m', '4j', '5j', '6M', '7m'],
-  myxolidian: ['T', '2M', '3M', '4j', '5j', '6M', '7m'],
-  blues: ['T', '3m', '4j', 'b5', '5j', '7m'],
+  major: ['T', 'M2', 'M3', 'P4', 'P5', 'M6', 'M7'],
+  minor: ['T', 'M2', 'b3', 'P4', 'P5', 'b6', 'b7'],
+  minorMelodic: ['T', 'M2', 'b3', 'P4', 'P5', 'M6', 'M7'],
+  minorHarmonic: ['T', 'M2', 'b3', 'P4', 'P5', 'b6', 'M7'],
+  dorian: ['T', 'M2', 'b3', 'P4', 'P5', 'M6', 'b7'],
+  myxolidian: ['T', 'M2', 'M3', 'P4', 'P5', 'M6', 'b7'],
+  blues: ['T', 'b3', 'P4', 'b5', 'P5', 'b7'],
+  pentatonicMinor: ['T', 'b3', 'P4', 'P5', 'b7'],
 };
 
-export const modes = Object.keys(modesIntervals);
+export type Mode = keyof typeof modesIntervals;
+
+export const modes = Object.keys(modesIntervals) as unknown as Mode[];
 
 export const modesHTIntervals = Object.entries(modesIntervals).reduce(
   (res, [key, mode]) => ({
     ...res,
-    [key]: mode.map((int) => chromaticHTI[int as keyof HalfToneInterval]),
+    [key]: mode.map((int) => chromaticHTI[int as Interval]),
   }),
   {} as Record<Mode, number[]>
 );

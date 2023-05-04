@@ -6,27 +6,46 @@ import {
   useEffect,
   useMemo,
 } from 'react';
-import { HalfToneInterval, modesHTIntervals } from 'src/config/modes';
+import {
+  DisplayMode,
+  DisplayModes,
+  displayModes,
+} from 'src/config/displayModes';
+import {
+  Interval,
+  Mode,
+  modesHTIntervals,
+  modesIntervals,
+} from 'src/config/modes';
+import { Note, notes } from 'src/config/notes';
 import { fourStrings, sixStrings } from 'src/config/tunings';
 
-import { notes } from 'src/config/notes';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 import { useStorage } from 'src/hooks/useStorage';
 import { version } from '../../package.json';
 
 export type AppContextType = {
   version: string;
+  // Neck
   type: NeckType;
   setType: Dispatch<SetStateAction<NeckType>>;
   config: NeckConfig;
+  // Tunnings
   tunings: TuningType[];
   tuning: TuningType;
   setTuning: Dispatch<SetStateAction<TuningType>>;
+  // Tonic
   tonic: Note | '';
   setTonic: Dispatch<SetStateAction<Note | ''>>;
+  // Display mode
+  displayModes: DisplayModes;
+  displayMode: DisplayMode | '';
+  setDisplayMode: Dispatch<SetStateAction<DisplayMode | ''>>;
+  // Mode
   mode: Mode | '';
   setMode: Dispatch<SetStateAction<Mode | ''>>;
   modeNotes: Note[];
+  modeIntervals: Interval[];
 };
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -48,6 +67,10 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
   );
   const [tonic, setTonic] = useStorage<Note | ''>('app-user-tonic', '');
   const [mode, setMode] = useStorage<Mode | ''>('app-user-mode', '');
+  const [displayMode, setDisplayMode] = useStorage<DisplayMode | ''>(
+    'app-user-display-mode',
+    ''
+  );
 
   const tunings = useMemo(() => {
     switch (type) {
@@ -61,6 +84,8 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
     }
   }, [type]);
 
+  const modeIntervals = mode !== '' ? (modesIntervals[mode] as Interval[]) : [];
+
   const modeNotes = useMemo(() => {
     const tonicIndex = notes.findIndex((n) => n === tonic);
     const fromTonic = notes.slice(tonicIndex, notes.length);
@@ -72,7 +97,7 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
       [] as Note[]
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [type, tuning, mode]);
+  }, [type, tuning, mode, tonic]);
 
   useEffect(() => {
     if (!tuning) {
@@ -96,6 +121,10 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
         mode,
         setMode,
         modeNotes,
+        modeIntervals,
+        displayModes,
+        displayMode,
+        setDisplayMode,
       }}
       {...props}
     >

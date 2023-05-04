@@ -3,6 +3,7 @@ import { useMediaQuery, useTheme } from '@mui/material';
 import BottomNav from '../BottomNav/BottomNav';
 import Box from '@mui/system/Box';
 import Container from '@mui/material/Container';
+import DisplayModeControl from '../controls/DisplayModeControl';
 import { FC } from 'react';
 import Grid from '@mui/system/Unstable_Grid';
 import ModeControl from '../controls/ModeControl';
@@ -30,12 +31,14 @@ export const Layout: FC = () => {
           <Grid xs={12} display="flex">
             <Container>
               <Grid container spacing={2}>
-                <Grid xs={12} sm={3}></Grid>
                 <Grid xs={12} sm={3}>
                   <TonicControl />
                 </Grid>
                 <Grid xs={12} sm={3}>
                   <ModeControl />
+                </Grid>
+                <Grid xs={12} sm={3}>
+                  <DisplayModeControl />
                 </Grid>
                 <Grid xs={12} sm={3}></Grid>
               </Grid>
