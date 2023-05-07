@@ -67,6 +67,24 @@ export const modesIntervals = {
   myxolidian: ['T', 'M2', 'M3', 'P4', 'P5', 'M6', 'b7'],
   blues: ['T', 'b3', 'P4', 'b5', 'P5', 'b7'],
   pentatonicMinor: ['T', 'b3', 'P4', 'P5', 'b7'],
+  phrygian: ['T', 'b2', 'b3', 'P4', 'P5', 'b6', 'b7'],
+  lydian: ['T', 'M2', 'M3', 'b5', 'P5', 'M6', 'M7'],
+  locrian: ['T', 'b2', 'b3', 'P4', 'b5', 'b6', 'b7'],
+  alteredDominant: ['T', 'b2', 'b3', 'M3', 'b5', 'b6', 'b7'],
+  chromatic: [
+    'T',
+    'b2',
+    'M2',
+    'b3',
+    'M3',
+    'P4',
+    'b5',
+    'P5',
+    'b6',
+    'M6',
+    'b7',
+    'M7',
+  ],
 };
 
 export type Mode = keyof typeof modesIntervals;

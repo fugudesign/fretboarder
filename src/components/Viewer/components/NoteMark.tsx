@@ -63,7 +63,7 @@ const NoteMark: FC<Props> = ({
         width: noteSize,
         height: noteSize,
         overflow: 'hidden',
-        borderRadius: '50%',
+        borderRadius: isTonic ? '25%':'50%',
         fontFamily: "'Instagram Sans Condensed', sans-serif",
         fontSize: '0.9em',
         fontWeight: 600,
