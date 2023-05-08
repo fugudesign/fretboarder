@@ -8,7 +8,7 @@ export default {
   toolbar: {
     height: {
       xs: 60,
-      md: 140,
+      md: 100,
     },
   },
   background: {

@@ -2,7 +2,9 @@ import Container from '@mui/material/Container';
 import { FC } from 'react';
 import Grid from '@mui/system/Unstable_Grid';
 import InstrumentControl from '../controls/InstrumentControl';
+import ModeControl from '../controls/ModeControl';
 import Paper from '@mui/material/Paper';
+import TonicControl from '../controls/TonicControl';
 import TuningControl from '../controls/TuningControl';
 import sx from './BottomNav.styles';
 
@@ -17,8 +19,12 @@ const BottomNav: FC = () => {
           <Grid xs={3}>
             <TuningControl size="small" />
           </Grid>
-          <Grid xs={3}></Grid>
-          <Grid xs={3}></Grid>
+          <Grid xs={3}>
+            <TonicControl size="small" />
+          </Grid>
+          <Grid xs={3}>
+            <ModeControl size="small" />
+          </Grid>
         </Grid>
       </Container>
     </Paper>

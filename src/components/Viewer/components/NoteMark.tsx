@@ -7,9 +7,9 @@ import clsx from 'clsx';
 import { grey } from '@mui/material/colors';
 import { useAppContext } from 'src/contexts/appContext';
 
-type Props = BoxProps &
+export type NoteMarkProps = BoxProps &
   WithSx & {
-    note: Note;
+    note?: Note;
     interval?: Interval;
     variant?: 'default' | 'tonic';
     emptyString?: boolean;
@@ -17,7 +17,7 @@ type Props = BoxProps &
 
 export const noteSize = 25;
 
-const NoteMark: FC<Props> = ({
+const NoteMark: FC<NoteMarkProps> = ({
   className,
   sx: sxProp,
   emptyString,
@@ -26,11 +26,11 @@ const NoteMark: FC<Props> = ({
   interval,
 }) => {
   const { displayMode } = useAppContext();
-  const hasHash = /#/.test(note);
-  const baseNote = note.replace(/#/g, '');
+  const hasHash = note ? /#/.test(note) : undefined;
+  const baseNote = note ? note.replace(/#/g, '') : undefined;
 
   const renderValue = () => {
-    if (displayMode === 'interval') {
+    if (displayMode === 'interval' || !note) {
       return interval;
     }
 
@@ -44,9 +44,16 @@ const NoteMark: FC<Props> = ({
 
   const color = () => {
     if (displayMode === 'interval') {
-      return interval ? colorsOfHTI[interval] : 'transparent';
+      return interval ? colorsOfHTI[interval][0] : 'transparent';
     }
-    return interval ? colorsOfHTI[interval] : grey[800];
+    return interval ? colorsOfHTI[interval][0] : grey[800];
+  };
+
+  const accentColor = () => {
+    if (displayMode === 'interval') {
+      return interval ? colorsOfHTI[interval][1] : 'transparent';
+    }
+    return interval ? colorsOfHTI[interval][1] : grey[800];
   };
 
   const isTonic = interval === 'T';
@@ -63,7 +70,7 @@ const NoteMark: FC<Props> = ({
         width: noteSize,
         height: noteSize,
         overflow: 'hidden',
-        borderRadius: isTonic ? '25%':'50%',
+        borderRadius: isTonic ? '25%' : '50%',
         fontFamily: "'Instagram Sans Condensed', sans-serif",
         fontSize: '0.9em',
         fontWeight: 600,
@@ -74,11 +81,12 @@ const NoteMark: FC<Props> = ({
           left: '50%',
           transform: 'translate(25%, -45%)',
         },
-        color: `secondary.contrastText`,
+        color: accentColor,
         bgcolor: color,
         '&.isTonic': {
+          color: `secondary.contrastText`,
           border: `2px solid`,
-          borderColor: isTonic ? `secondary.contrastText` : color,
+          borderColor: `secondary.contrastText`,
         },
         '&.emptyString': {
           color: color,
@@ -87,7 +95,7 @@ const NoteMark: FC<Props> = ({
           borderColor: color,
           '&.isTonic': {
             color: `secondary.contrastText`,
-            borderColor: isTonic ? `secondary.contrastText` : color,
+            borderColor: `secondary.contrastText`,
           },
         },
         ...sxProp,

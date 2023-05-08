@@ -6,6 +6,7 @@ import { FC } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { useAppContext } from 'src/contexts/appContext';
+import wording from 'src/config/wording';
 
 type Props = {
   size?: FormControlProps['size'];
@@ -36,7 +37,7 @@ const ModeControl: FC<Props> = ({ size, variant }) => {
             value={mode}
             sx={{ textTransform: 'capitalize' }}
           >
-            {mode}
+            {wording.modes[mode]}
           </MenuItem>
         ))}
       </Select>
