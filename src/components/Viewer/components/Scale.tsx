@@ -30,7 +30,7 @@ const Scale: FC = () => {
 
   const noteInterval = (note: Note) => {
     const i = modeNotes.indexOf(note);
-    return modeIntervals[i];
+    return i >= 0 ? modeIntervals[i] : undefined;
   };
 
   const renderStringNotes = (string: Note, i: number) => {

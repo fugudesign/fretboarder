@@ -4,6 +4,7 @@ import {
   createContext,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
 } from 'react';
 import {
@@ -14,15 +15,17 @@ import {
 import {
   Interval,
   Mode,
+  modes,
   modesHTIntervals,
   modesIntervals,
 } from 'src/config/modes';
 import { Note, notes } from 'src/config/notes';
 import { fourStrings, sixStrings } from 'src/config/tunings';
 
+import pkg from '../../package.json';
+import { satisfies } from 'compare-versions';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 import { useStorage } from 'src/hooks/useStorage';
-import { version } from '../../package.json';
 
 export type AppContextType = {
   version: string;
@@ -56,6 +59,7 @@ export interface AppContextProps {
 }
 
 export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
+  const [version, setVersion] = useStorage<string>('app-version');
   const [type, setType] = useStorage<NeckType>(
     'app-user-guitar-type',
     'classic'
@@ -99,12 +103,30 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, tuning, mode, tonic]);
 
+  const processUpdates = () => {
+    if (pkg.version !== version) {
+      const previousVersion = version;
+      setVersion(pkg.version);
+      // Process upgrades
+      switch (true) {
+        case !version || satisfies(previousVersion, '<0.2.0'):
+          if (`${mode}` === 'pentatonicMinor') setMode('minorPentatonic');
+          break;
+      }
+    }
+  };
+
   useEffect(() => {
     if (!tuning) {
       setTuning(config.defaults.tuning);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config]);
+
+  useLayoutEffect(() => {
+    processUpdates();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <AppContext.Provider

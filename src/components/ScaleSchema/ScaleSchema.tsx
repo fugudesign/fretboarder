@@ -34,7 +34,7 @@ const ScaleSchema = () => {
                     interval={interval}
                     emptyString
                     sx={{
-                      ...(!modeIntervals.includes(interval)
+                      ...(modeIntervals && !modeIntervals.includes(interval)
                         ? {
                             '&.emptyString': {
                               color: grey[800],
