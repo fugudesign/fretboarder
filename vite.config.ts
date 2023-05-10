@@ -1,5 +1,7 @@
 /// <reference types="vitest" />
+import { VitePWA } from 'vite-plugin-pwa';
 import { defineConfig } from 'vite';
+import manifest from './src/pwa/manifest.json';
 import react from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 
@@ -22,6 +24,16 @@ export default defineConfig({
     react(),
     viteTsConfigPaths({
       root: './',
+    }),
+    VitePWA({
+      registerType: 'autoUpdate',
+      workbox: {
+        cleanupOutdatedCaches: false,
+      },
+      devOptions: {
+        enabled: true,
+      },
+      manifest,
     }),
   ],
 
