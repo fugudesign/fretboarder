@@ -1,10 +1,14 @@
 import { Theme } from '@mui/material';
+import { grey } from '@mui/material/colors';
 import { noteSize } from './components/NoteMark';
 
 export default {
   root: {
     display: 'flex',
     position: 'relative',
+    ml: -3,
+    mt: 5,
+    mb: 2,
     '& svg': {
       display: 'block',
     },
@@ -28,7 +32,7 @@ export default {
     '& .note': {},
     '& .fretNumbers': {
       position: 'absolute',
-      top: -(noteSize * 1.5),
+      bottom: -(noteSize * 2),
       left: 0,
       display: 'flex',
       flexDirection: 'row',
@@ -41,12 +45,17 @@ export default {
       borderRadius: '50%',
       width: noteSize,
       height: noteSize,
-      backgroundColor: '#402f1f',
+      color: grey[800],
       display: 'inline-flex',
+      flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      fontFamily: "'Instagram Sans Condensed', sans-serif",
-      fontWeight: 800,
+      fontWeight: 900,
+      '.dots': {
+        color: 'primary.contrastText',
+        display: 'flex',
+        flexDirection: 'row',
+      },
     },
   },
   neck: {

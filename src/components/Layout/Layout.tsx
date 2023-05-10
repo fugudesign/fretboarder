@@ -9,20 +9,19 @@ import Grid from '@mui/system/Unstable_Grid';
 import Navbar from '../Navbar/Navbar';
 import ScaleSchema from '../ScaleSchema/ScaleSchema';
 import Viewer from '../Viewer/Viewer';
+import clsx from 'clsx';
 import sx from './Layout.styles';
 
 export const Layout: FC = () => {
   const theme = useTheme();
+  const isSm = useMediaQuery(theme.breakpoints.up('sm'));
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
     <Box sx={sx.root}>
       <Navbar />
       <Container maxWidth="xl">
-        <Grid container spacing={2} marginTop={8}>
-          <Grid xs={12} display="flex" justifyContent="center">
-            <Viewer />
-          </Grid>
+        <Grid container spacing={2} marginBottom={isMd ? 8 : 2}>
           <Grid xs={12}>
             <Container maxWidth="lg">
               <Grid xs={12} display="flex" justifyContent="flex-end">
@@ -30,12 +29,27 @@ export const Layout: FC = () => {
               </Grid>
             </Container>
           </Grid>
+          <Grid xs={12} display="flex" justifyContent="center">
+            <Box className="scroller">
+              <Box
+                className={clsx('viewerAdapt', { isSm, isMd })}
+                sx={sx.mobileAdapt}
+              >
+                <Viewer />
+              </Box>
+            </Box>
+          </Grid>
         </Grid>
       </Container>
       <Container maxWidth="lg">
         <Grid container spacing={2} marginTop={isMd ? 5 : 3}>
           <Grid xs={12} display="flex">
-            <ScaleSchema />
+            <Box
+              className={clsx('scaleSchemaAdapt', { isSm, isMd })}
+              sx={sx.mobileAdapt}
+            >
+              <ScaleSchema />
+            </Box>
           </Grid>
         </Grid>
       </Container>

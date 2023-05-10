@@ -2,6 +2,7 @@ import { Note, notes } from 'src/config/notes';
 import NoteMark, { noteSize } from './NoteMark';
 
 import Box from '@mui/material/Box';
+import { Circle as CircleIcon } from '@mui/icons-material';
 import { FC } from 'react';
 import sx from '../Viewer.styles';
 import { useAppContext } from 'src/contexts/appContext';
@@ -47,7 +48,6 @@ const Scale: FC = () => {
           <NoteMark
             key={`s${i}${string}-n${ni}${n}`}
             className="note"
-            variant={tonic === n ? 'tonic' : 'default'}
             sx={{
               position: 'absolute',
               top: 0,
@@ -68,6 +68,7 @@ const Scale: FC = () => {
           <Box
             className="fretMarker"
             key={`marker-${m}`}
+            data-dot={m === 12 ? 2 : 1}
             sx={{
               left:
                 fretPositions[m - 1] +
@@ -75,6 +76,10 @@ const Scale: FC = () => {
                   (type === 'lapsteel' ? 1 : 2),
             }}
           >
+            <Box className="dots">
+              <CircleIcon sx={{ width: 10 }} />{' '}
+              {m === 12 && <CircleIcon sx={{ width: 10 }} />}
+            </Box>
             {m}
           </Box>
         ))}

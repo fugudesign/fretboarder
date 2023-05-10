@@ -17,6 +17,7 @@ const DisplayModeControl: FC = () => {
   return (
     <FormGroup>
       <FormControlLabel
+        sx={{ margin: 0 }}
         control={
           <Switch
             color="primary"

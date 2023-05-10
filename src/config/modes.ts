@@ -57,18 +57,18 @@ export const chromaticHTI = {
 };
 
 export const colorsOfHTI = {
-  T: [grey[900], grey[900]],
-  b2: [yellow[700], grey[900]],
-  M2: [yellow[500], grey[900]],
-  b3: [red[700], grey[900]],
-  M3: [red[500], grey[900]],
-  P4: [cyan[500], grey[900]],
-  b5: [orange[700], grey[900]],
-  P5: [lightGreen[500], grey[900]],
-  b6: [purple[600], grey[900]],
-  M6: [purple[400], grey[900]],
-  b7: [indigo[600], grey[900]],
-  M7: [indigo[400], grey[900]],
+  T: [grey[900], 'background.default'],
+  b2: [yellow[700], 'background.default'],
+  M2: [yellow[500], 'background.default'],
+  b3: [red[700], 'background.default'],
+  M3: [red[500], 'background.default'],
+  P4: [cyan[500], 'background.default'],
+  b5: [orange[700], 'background.default'],
+  P5: [lightGreen[500], 'background.default'],
+  b6: [purple[600], 'background.default'],
+  M6: [purple[400], 'background.default'],
+  b7: [indigo[600], 'background.default'],
+  M7: [indigo[400], 'background.default'],
 };
 
 export const modesIntervals = {

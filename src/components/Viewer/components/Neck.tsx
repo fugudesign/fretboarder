@@ -95,7 +95,7 @@ const Neck: FC = () => {
         height={`${config.board.height}`}
       >
         {fingerboard}
-        {markers}
+        {/* {markers} */}
         {frets}
         {strings}
       </svg>

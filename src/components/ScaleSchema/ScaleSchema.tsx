@@ -1,4 +1,5 @@
 import { Interval, chromaticHTI } from 'src/config/modes';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 import Box from '@mui/material/Box';
 import { Children } from 'react';
@@ -14,17 +15,21 @@ import wording from 'src/config/wording';
 
 const ScaleSchema = () => {
   const { modeIntervals, tonic } = useAppContext();
+  const theme = useTheme();
+  const isSm = useMediaQuery(theme.breakpoints.up('sm'));
+
   const intervalsHTI = Object.keys(chromaticHTI) as Interval[];
 
   const noteInMode = (interval: Interval) => modeIntervals.includes(interval);
 
   const getHTI = (interval: Interval) => {
     const index = intervalsHTI.indexOf(interval);
-    return chromaticHTI[interval] - chromaticHTI[intervalsHTI[index - 1]];
+    const hti = chromaticHTI[interval] - chromaticHTI[intervalsHTI[index - 1]];
+
+    return hti > 1 ? hti * 2 : hti;
   };
 
   const getNote = (interval: Interval) => {
-    console.log('getNote', interval);
     if (!tonic) return;
 
     const index = intervalsHTI.indexOf(interval);
@@ -33,17 +38,11 @@ const ScaleSchema = () => {
     const scaleStart = notes.slice(tonicIndex, notes.length);
     const scale = [...scaleStart, ...scaleEnd];
 
-    console.log({
-      index,
-      scale,
-      tonicIndex,
-      note: scale[index],
-    });
     return scale[index];
   };
 
   return (
-    <Box sx={sx.root}>
+    <Box className={clsx('scaleSchema', { isSm })} sx={sx.root}>
       {Children.toArray(
         intervalsHTI.map((interval, index) => (
           <>
@@ -55,17 +54,9 @@ const ScaleSchema = () => {
                 <IconButton sx={sx.button}>
                   <NoteMark
                     interval={interval}
-                    emptyString
                     sx={{
                       ...(modeIntervals && !noteInMode(interval)
-                        ? {
-                            '&.emptyString': {
-                              color: grey[800],
-                              bgcolor: 'transparent',
-                              border: `2px solid`,
-                              borderColor: grey[800],
-                            },
-                          }
+                        ? { bgcolor: grey[800] }
                         : {}),
                     }}
                   />

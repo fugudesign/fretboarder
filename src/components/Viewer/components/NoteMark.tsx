@@ -55,7 +55,7 @@ const NoteMark: FC<NoteMarkProps> = ({
     if (displayMode === 'interval') {
       return interval ? colorsOfHTI[interval][1] : 'transparent';
     }
-    return interval ? colorsOfHTI[interval][1] : grey[800];
+    return interval ? colorsOfHTI[interval][1] : 'background.default';
   };
 
   const isTonic = interval === 'T';
@@ -74,8 +74,11 @@ const NoteMark: FC<NoteMarkProps> = ({
         overflow: 'hidden',
         borderRadius: isTonic ? '25%' : '50%',
         fontFamily: "'Instagram Sans Condensed', sans-serif",
-        fontSize: '0.9em',
+        fontSize: noteSize,
         fontWeight: 600,
+        '& > span': {
+          fontSize: '0.7em !important',
+        },
         '& sup': {
           fontSize: '0.6em',
           position: 'absolute',
@@ -93,9 +96,10 @@ const NoteMark: FC<NoteMarkProps> = ({
         '&.emptyString': {
           color: color,
           bgcolor: `transparent`,
-          border: `2px solid`,
+          border: `1px solid`,
           borderColor: color,
           '&.isTonic': {
+            border: `2px solid`,
             color: `secondary.contrastText`,
             borderColor: `secondary.contrastText`,
           },
@@ -105,13 +109,13 @@ const NoteMark: FC<NoteMarkProps> = ({
         },
         ...sxProp,
       }}
-      className={clsx(className, {
+      className={clsx(className, 'noteMark', {
         emptyString,
         isTonic,
         isText: variant === 'text',
       })}
     >
-      {renderValue()}
+      <span>{renderValue()}</span>
     </Box>
   );
 };
