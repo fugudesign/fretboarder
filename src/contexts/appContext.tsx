@@ -15,7 +15,6 @@ import {
 import {
   Interval,
   Mode,
-  modes,
   modesHTIntervals,
   modesIntervals,
 } from 'src/config/modes';

@@ -11,8 +11,9 @@ export type NoteMarkProps = BoxProps &
   WithSx & {
     note?: Note;
     interval?: Interval;
-    variant?: 'default' | 'tonic';
+    variant?: 'default' | 'text';
     emptyString?: boolean;
+    onlyNote?: boolean;
   };
 
 export const noteSize = 25;
@@ -24,13 +25,14 @@ const NoteMark: FC<NoteMarkProps> = ({
   variant,
   note,
   interval,
+  onlyNote = false,
 }) => {
   const { displayMode } = useAppContext();
   const hasHash = note ? /#/.test(note) : undefined;
   const baseNote = note ? note.replace(/#/g, '') : undefined;
 
   const renderValue = () => {
-    if (displayMode === 'interval' || !note) {
+    if ((displayMode === 'interval' && !onlyNote) || !note) {
       return interval;
     }
 
@@ -98,9 +100,16 @@ const NoteMark: FC<NoteMarkProps> = ({
             borderColor: `secondary.contrastText`,
           },
         },
+        '&.isText': {
+          bgcolor: 'transparent',
+        },
         ...sxProp,
       }}
-      className={clsx(className, { emptyString, isTonic })}
+      className={clsx(className, {
+        emptyString,
+        isTonic,
+        isText: variant === 'text',
+      })}
     >
       {renderValue()}
     </Box>

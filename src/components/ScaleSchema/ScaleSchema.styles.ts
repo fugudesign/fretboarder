@@ -1,3 +1,5 @@
+import { grey } from '@mui/material/colors';
+
 export default {
   root: {
     width: '100%',
@@ -7,7 +9,17 @@ export default {
   button: {
     fontSize: 'inherit',
   },
-  step: {},
+  note: {
+    color: grey[400],
+    '&.disabled': {
+      color: grey[800],
+    },
+  },
+  step: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
   connector: {
     position: 'relative',
     '&:after': {
@@ -15,7 +27,7 @@ export default {
       position: 'absolute',
       left: 0,
       right: 0,
-      top: '50%',
+      top: '20px',
       height: '1px',
       borderBottom: '1px solid white',
     },
