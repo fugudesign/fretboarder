@@ -1,6 +1,7 @@
 export default {
   root: {
     width: '100%',
+    overflow: 'auto',
     display: 'flex',
     flexDirection: 'row',
   },

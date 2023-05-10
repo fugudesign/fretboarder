@@ -21,7 +21,9 @@ export const Layout: FC = () => {
       <Container maxWidth="xl">
         <Grid container spacing={2} marginTop={8}>
           <Grid xs={12} display="flex" justifyContent="center">
-            <Viewer />
+            <Box  style={{height:'300px', maxWidth: '100hw', overflow: 'auto', paddingTop:'40px'}}>
+              <Viewer />
+            </Box>
           </Grid>
           <Grid xs={12}>
             <Container maxWidth="lg">
@@ -34,7 +36,7 @@ export const Layout: FC = () => {
       </Container>
       <Container maxWidth="lg">
         <Grid container spacing={2} marginTop={isMd ? 5 : 3}>
-          <Grid xs={12} display="flex">
+          <Grid  xs={12} display="flex">
             <ScaleSchema />
           </Grid>
         </Grid>
