@@ -24,7 +24,12 @@ export const Layout: FC = () => {
         <Grid container spacing={2} marginBottom={isMd ? 8 : 2}>
           <Grid xs={12}>
             <Container maxWidth="lg">
-              <Grid xs={12} display="flex" justifyContent="flex-end">
+              <Grid
+                xs={12}
+                display="flex"
+                justifyContent="flex-end"
+                padding={0}
+              >
                 <DisplayModeControl />
               </Grid>
             </Container>

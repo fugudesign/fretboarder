@@ -7,7 +7,10 @@ export default {
     display: 'flex',
     position: 'relative',
     ml: -3,
-    mt: 5,
+    mt: {
+      xs: 0.5,
+      md: 5,
+    },
     mb: 2,
     '& svg': {
       display: 'block',

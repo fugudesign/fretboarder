@@ -14,7 +14,7 @@ const Navbar: FC = () => {
   return (
     <Box sx={sx.root}>
       <AppBar
-        position="static"
+        position="fixed"
         component="nav"
         color="primary"
         enableColorOnDark

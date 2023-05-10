@@ -41,6 +41,7 @@ export default {
     M7: 'Major seventh',
   },
   form: {
-    diplayIntervals: 'Display intervals',
+    diplayNotes: 'Notes',
+    diplayIntervals: 'Intervals',
   },
 };

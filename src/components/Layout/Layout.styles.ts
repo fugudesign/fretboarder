@@ -3,6 +3,14 @@ import { noteSize } from '../Viewer/components/NoteMark';
 
 export default {
   root: {
+    mt: {
+      xs: 9,
+      md: 13.5,
+    },
+    mb: {
+      xs: 15,
+      sm: 10,
+    },
     '& .scroller': {
       overflow: 'hidden',
       py: 0,
@@ -28,11 +36,11 @@ export default {
     '&.viewerAdapt': {
       pt: 0,
       pb: 8,
-      '&:not(.isSm)': {
+      '&:not(.isMd)': {
         pb: 2,
         '& .viewer': {
           transformOrigin: 'top left',
-          transform: 'scale(0.8)',
+          transform: 'scale(0.75)',
         },
       },
     },
