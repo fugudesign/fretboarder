@@ -1,11 +1,10 @@
-import { Chip } from '@mui/material';
+import { Box, Chip } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { FC } from 'react';
 import { useAppContext } from 'src/contexts/appContext';
-import InstallPrompt from '../InstallPrompt/InstallPrompt';
+import InstallButton from '../InstallButton/InstallButton';
 import sx from './Navbar.styles';
 
 const Navbar: FC = () => {
@@ -34,7 +33,7 @@ const Navbar: FC = () => {
             <Chip sx={sx.version} size="small" label={version} />
           </Box>
           <Box>
-            <InstallPrompt />
+            <InstallButton variant="contained">Install</InstallButton>
           </Box>
         </Toolbar>
       </AppBar>
