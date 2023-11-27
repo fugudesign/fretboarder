@@ -1,15 +1,15 @@
 import { useMediaQuery, useTheme } from '@mui/material';
 
-import BottomNav from '../BottomNav/BottomNav';
-import Box from '@mui/system/Box';
 import Container from '@mui/material/Container';
-import DisplayModeControl from '../controls/DisplayModeControl';
-import { FC } from 'react';
+import Box from '@mui/system/Box';
 import Grid from '@mui/system/Unstable_Grid';
+import clsx from 'clsx';
+import { FC } from 'react';
+import BottomNav from '../BottomNav/BottomNav';
 import Navbar from '../Navbar/Navbar';
 import ScaleSchema from '../ScaleSchema/ScaleSchema';
 import Viewer from '../Viewer/Viewer';
-import clsx from 'clsx';
+import DisplayModeControl from '../controls/DisplayModeControl';
 import sx from './Layout.styles';
 
 export const Layout: FC = () => {

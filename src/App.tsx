@@ -1,8 +1,8 @@
-import { AppContextProvider } from './contexts/appContext';
 import CssBaseline from '@mui/material/CssBaseline';
-import { Layout } from './components/Layout/Layout';
 import { ThemeProvider } from '@mui/material/styles';
+import { Layout } from './components/Layout/Layout';
 import theme from './config/theme';
+import { AppContextProvider } from './contexts/appContext';
 
 export function App() {
   return (

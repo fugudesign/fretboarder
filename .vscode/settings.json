@@ -1,3 +1,13 @@
 {
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.addMissingImports": true,
+    "source.organizeImports": true
+  },
+  "[prisma]": {
     "editor.formatOnSave": true
+  }
 }

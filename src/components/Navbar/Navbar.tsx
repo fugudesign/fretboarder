@@ -1,11 +1,12 @@
+import { Chip } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import { Chip } from '@mui/material';
-import { FC } from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import sx from './Navbar.styles';
+import { FC } from 'react';
 import { useAppContext } from 'src/contexts/appContext';
+import InstallPrompt from '../InstallPrompt/InstallPrompt';
+import sx from './Navbar.styles';
 
 const Navbar: FC = () => {
   const { version, type } = useAppContext();
@@ -31,6 +32,9 @@ const Navbar: FC = () => {
               FretBoarder
             </Typography>
             <Chip sx={sx.version} size="small" label={version} />
+          </Box>
+          <Box>
+            <InstallPrompt />
           </Box>
         </Toolbar>
       </AppBar>
