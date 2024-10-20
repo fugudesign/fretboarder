@@ -1,12 +1,13 @@
 {
   "name": "fretboarder",
   "displayName": "FretBoarder",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
+    "release": "nx release",
     "gen:pwa": "npx pwa-asset-generator ./src/pwa/icon.svg ./public/icons --index ./index.html --manifest ./src/pwa/manifest.json --path-override /icons --favicon --background '#8D8232'"
   },
   "private": true,
