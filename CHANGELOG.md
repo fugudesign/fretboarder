@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/fugudesign/fretboarder/compare/v1.0.1...v1.0.2) (2024-10-21)
+
+
+### Bug Fixes
+
+* specify node version ([78e0fca](https://github.com/fugudesign/fretboarder/commit/78e0fca6ff3b6cb4c5f113322c0e4cc1fe95aa3f))
+
 ## [1.0.1](https://github.com/fugudesign/fretboarder/compare/v1.0.0...v1.0.1) (2024-10-21)
 
 
