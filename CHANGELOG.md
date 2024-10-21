@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/fugudesign/fretboarder/compare/v1.0.3...v1.0.4) (2024-10-21)
+
+
+### Bug Fixes
+
+* try to fix env context ([f6e4359](https://github.com/fugudesign/fretboarder/commit/f6e4359727f87494b5b380e49c19c9a1d526ecce))
+
 ## [1.0.3](https://github.com/fugudesign/fretboarder/compare/v1.0.2...v1.0.3) (2024-10-21)
 
 
