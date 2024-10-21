@@ -106,7 +106,6 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
 
   const processUpdates = () => {
     const envVersion = process?.env?.REACT_APP_NETLIFY_CONTEXT ?? '';
-    console.log({ envVersion });
     if (envVersion !== version) {
       const previousVersion = version;
       setVersion(envVersion);
@@ -118,6 +117,10 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
       }
     }
   };
+
+  useEffect(() => {
+    console.log({ process });
+  }, [process]);
 
   useEffect(() => {
     if (!tuning) {
