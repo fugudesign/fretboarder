@@ -1,12 +1,12 @@
 import FormControl, { FormControlProps } from '@mui/material/FormControl';
-import { Mode, modes } from 'src/config/modes';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { Mode, modes } from 'src/config/modes';
 
-import { FC } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import { useAppContext } from 'src/contexts/appContext';
+import { FC } from 'react';
 import wording from 'src/config/wording';
+import { useAppContext } from 'src/contexts/appContext';
 
 type Props = {
   size?: FormControlProps['size'];
@@ -18,6 +18,10 @@ const ModeControl: FC<Props> = ({ size, variant }) => {
 
   const handleChange = (e: SelectChangeEvent) => {
     setMode(e.target.value as Mode);
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLLIElement>) => {
+    setMode(e.target.dataset.value as Mode);
   };
 
   return (
@@ -36,6 +40,7 @@ const ModeControl: FC<Props> = ({ size, variant }) => {
             key={mode}
             value={mode}
             sx={{ textTransform: 'capitalize' }}
+            onFocus={handleFocus}
           >
             {wording.modes[mode]}
           </MenuItem>

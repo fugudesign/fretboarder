@@ -21,10 +21,10 @@ import {
 import { Note, notes } from 'src/config/notes';
 import { fourStrings, sixStrings } from 'src/config/tunings';
 
-import pkg from '../../package.json';
 import { satisfies } from 'compare-versions';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 import { useStorage } from 'src/hooks/useStorage';
+import pkg from '../../package.json';
 
 export type AppContextType = {
   version: string;
@@ -87,7 +87,10 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
     }
   }, [type]);
 
-  const modeIntervals = mode !== '' ? (modesIntervals[mode] as Interval[]) : [];
+  const modeIntervals =
+    mode !== '' && mode in modesIntervals
+      ? (modesIntervals[mode] as Interval[])
+      : [];
 
   const modeNotes = useMemo(() => {
     const tonicIndex = notes.findIndex((n) => n === tonic);
