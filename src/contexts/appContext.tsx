@@ -105,9 +105,9 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
   }, [type, tuning, mode, tonic]);
 
   const processUpdates = () => {
-    const envVersion = process?.env?.REACT_APP_NETLIFY_CONTEXT ?? '';
-    const envCommit = process?.env?.REACT_APP_NETLIFY_COMMIT_REF ?? '';
-    console.log({ envVersion, envCommit, test: process.env.REACT_APP_TEST });
+    const envVersion = process?.env?.VITE_NETLIFY_CONTEXT ?? '';
+    const envCommit = process?.env?.VITE_NETLIFY_COMMIT_REF ?? '';
+    console.log({ envVersion, envCommit, test: process.env.VITE_TEST });
     if (envVersion !== version) {
       const previousVersion = version;
       setVersion(envVersion);
