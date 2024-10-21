@@ -24,6 +24,7 @@ import { fourStrings, sixStrings } from 'src/config/tunings';
 import { satisfies } from 'compare-versions';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 import { useStorage } from 'src/hooks/useStorage';
+import context from '../../public/netlify-context.json';
 
 export type AppContextType = {
   version: string;
@@ -74,6 +75,8 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
     ''
   );
 
+  console.log(context);
+
   const tunings = useMemo(() => {
     switch (type) {
       case 'bass':
@@ -117,10 +120,6 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
       }
     }
   };
-
-  useEffect(() => {
-    console.log({ process });
-  }, [process]);
 
   useEffect(() => {
     if (!tuning) {

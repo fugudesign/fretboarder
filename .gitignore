@@ -40,3 +40,4 @@ testem.log
 Thumbs.db
 .yarn/install-state.gz
 .env
+public/netlify-context.json
