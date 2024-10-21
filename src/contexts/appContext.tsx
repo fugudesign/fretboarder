@@ -106,7 +106,8 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
 
   const processUpdates = () => {
     const envVersion = process?.env?.REACT_APP_NETLIFY_CONTEXT ?? '';
-    console.log(envVersion);
+    const envCommit = process?.env?.REACT_APP_NETLIFY_COMMIT_REF ?? '';
+    console.log({ envVersion, envCommit, test: process.env.REACT_APP_TEST });
     if (envVersion !== version) {
       const previousVersion = version;
       setVersion(envVersion);
