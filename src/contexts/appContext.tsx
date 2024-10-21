@@ -106,8 +106,6 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
 
   const processUpdates = () => {
     const envVersion = process?.env?.VITE_NETLIFY_CONTEXT ?? '';
-    const envCommit = process?.env?.VITE_NETLIFY_COMMIT_REF ?? '';
-    console.log({ envVersion, envCommit, test: process.env.VITE_TEST });
     if (envVersion !== version) {
       const previousVersion = version;
       setVersion(envVersion);
