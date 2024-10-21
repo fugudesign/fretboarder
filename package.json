@@ -1,7 +1,7 @@
 {
   "name": "fretboarder",
   "displayName": "FretBoarder",
-  "version": "1.0.0",
+  "version": "0.0.0-semantically-released",
   "license": "MIT",
   "scripts": {
     "start": "vite",
