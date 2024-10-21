@@ -24,7 +24,6 @@ import { fourStrings, sixStrings } from 'src/config/tunings';
 import { satisfies } from 'compare-versions';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 import { useStorage } from 'src/hooks/useStorage';
-import pkg from '../../package.json';
 
 export type AppContextType = {
   version: string;
@@ -106,9 +105,10 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
   }, [type, tuning, mode, tonic]);
 
   const processUpdates = () => {
-    if (pkg.version !== version) {
+    const envVersion = process?.env?.REACT_APP_NETLIFY_CONTEXT ?? '';
+    if (envVersion !== version) {
       const previousVersion = version;
-      setVersion(pkg.version);
+      setVersion(envVersion);
       // Process upgrades
       switch (true) {
         case !version || satisfies(previousVersion, '<0.2.0'):
