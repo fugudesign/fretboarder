@@ -19,3 +19,10 @@ jobs:
         uses: cycjimmy/semantic-release-action@v4
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Merge main -> release
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: release
+          message: Merge main into release
+          github_token: ${{ secrets.GITHUB_TOKEN }}
