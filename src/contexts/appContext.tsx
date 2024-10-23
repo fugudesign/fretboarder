@@ -41,9 +41,12 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
   const [type, setType] = useStorage<NeckType>('app-user-guitar-type', 'guitar');
   const { config } = useGuitarConfig(type);
   const [tuning, setTuning] = useStorage<Tuning>(`app-user-${type}-tuning`, config.defaults.tuning);
-  const [tonic, setTonic] = useStorage<BaseNote | ''>('app-user-tonic', '');
-  const [mode, setMode] = useStorage<Mode | ''>('app-user-mode', '');
-  const [displayMode, setDisplayMode] = useStorage<DisplayMode | ''>('app-user-display-mode', '');
+  const [tonic, setTonic] = useStorage<BaseNote | ''>('app-user-tonic', 'C');
+  const [mode, setMode] = useStorage<Mode | ''>('app-user-mode', 'chromatic');
+  const [displayMode, setDisplayMode] = useStorage<DisplayMode | ''>(
+    'app-user-display-mode',
+    'note'
+  );
 
   const tunings = useMemo(() => {
     switch (type) {
