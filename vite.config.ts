@@ -4,7 +4,6 @@ import { defineConfig } from 'vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { VitePWA } from 'vite-plugin-pwa';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
-import manifest from './src/pwa/manifest.json';
 
 export default defineConfig({
   cacheDir: './node_modules/.vite/fretboarder',
@@ -25,11 +24,14 @@ export default defineConfig({
     }),
     VitePWA({
       registerType: 'autoUpdate',
-      workbox: {
-        cleanupOutdatedCaches: false,
-      },
+      injectRegister: 'auto',
       devOptions: {
         enabled: true,
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        cleanupOutdatedCaches: false,
+        sourcemap: true,
       },
       manifest,
     }),
@@ -44,12 +46,12 @@ export default defineConfig({
   //  ],
   // },
 
-  test: {
-    globals: true,
-    cache: {
-      dir: './node_modules/.vitest',
-    },
-    environment: 'jsdom',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-  },
+  // test: {
+  //   globals: true,
+  //   cache: {
+  //     dir: './node_modules/.vitest',
+  //   },
+  //   environment: 'jsdom',
+  //   include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+  // },
 });
