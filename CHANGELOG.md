@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/fugudesign/fretboarder/compare/v1.0.10...v1.1.0) (2024-10-23)
+
+
+### Features
+
+* add sounds on notes ([14d317d](https://github.com/fugudesign/fretboarder/commit/14d317d76646596d482e47b612f06264dea5ec07))
+
 ## [1.0.10](https://github.com/fugudesign/fretboarder/compare/v1.0.9...v1.0.10) (2024-10-21)
 
 
