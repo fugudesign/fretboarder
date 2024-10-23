@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/fugudesign/fretboarder/compare/v1.3.0...v1.3.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* bug in manifest ([2cad68e](https://github.com/fugudesign/fretboarder/commit/2cad68e9f442f7e268406b3cfb8e96b07de75d7d))
+
 # [1.3.0](https://github.com/fugudesign/fretboarder/compare/v1.2.0...v1.3.0) (2024-10-23)
 
 

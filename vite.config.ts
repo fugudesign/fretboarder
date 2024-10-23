@@ -33,8 +33,43 @@ export default defineConfig({
         cleanupOutdatedCaches: false,
         sourcemap: true,
       },
-      // @ts-expect-error
-      manifest,
+      manifest: {
+        name: 'FretBoarder',
+        short_name: 'FretBoarder',
+        description:
+          'FretBoarder is an application to visualize different scales on the instrument neck.',
+        icons: [
+          {
+            src: '/icons/manifest-icon-192.maskable.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: '/icons/manifest-icon-192.maskable.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+          {
+            src: '/icons/manifest-icon-512.maskable.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any',
+          },
+          {
+            src: '/icons/manifest-icon-512.maskable.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable',
+          },
+        ],
+        theme_color: '#8D8232',
+        background_color: '#8D8232',
+        display: 'standalone',
+        scope: '/',
+        start_url: '/',
+      },
     }),
   ],
 
