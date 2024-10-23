@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/fugudesign/fretboarder/compare/v1.2.0...v1.3.0) (2024-10-23)
+
+
+### Features
+
+* change note sound to make it more string ([b818614](https://github.com/fugudesign/fretboarder/commit/b818614d2579d9451d58a59408486930fa7452cf))
+
 # [1.2.0](https://github.com/fugudesign/fretboarder/compare/v1.1.2...v1.2.0) (2024-10-23)
 
 
