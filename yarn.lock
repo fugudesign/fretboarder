@@ -2042,13 +2042,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/roboto@npm:^4.5.8":
-  version: 4.5.8
-  resolution: "@fontsource/roboto@npm:4.5.8"
-  checksum: 10c0/d7bb7ce51b82888701e20116e762797bfc5aab1ea964793f40a83945a27bcabe77cd06aa178f7adabd682d58ee82ed62319f60db7e831d02e76957f08cf7356a
-  languageName: node
-  linkType: hard
-
 "@humanwhocodes/config-array@npm:^0.9.2":
   version: 0.9.5
   resolution: "@humanwhocodes/config-array@npm:0.9.5"
@@ -5985,7 +5978,6 @@ __metadata:
   dependencies:
     "@emotion/react": "npm:^11.10.6"
     "@emotion/styled": "npm:^11.10.6"
-    "@fontsource/roboto": "npm:^4.5.8"
     "@mui/icons-material": "npm:^5.11.11"
     "@mui/material": "npm:^5.11.13"
     "@semantic-release/changelog": "npm:^6.0.3"

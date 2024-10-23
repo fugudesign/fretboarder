@@ -33,6 +33,7 @@ export default defineConfig({
         cleanupOutdatedCaches: false,
         sourcemap: true,
       },
+      // @ts-expect-error
       manifest,
     }),
   ],
