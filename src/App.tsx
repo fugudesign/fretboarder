@@ -7,8 +7,6 @@ import { AppContextProvider } from './contexts/appContext';
 export function App() {
   const processUpdates = () => {
     if (localStorage.getItem('app-version')) {
-      console.log('need to update');
-      // Process upgrades
       localStorage.clear();
     }
   };
