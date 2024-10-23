@@ -1,10 +1,9 @@
 import {
+  createContext,
   Dispatch,
   SetStateAction,
-  createContext,
   useContext,
   useEffect,
-  useLayoutEffect,
   useMemo,
 } from 'react';
 import {
@@ -18,26 +17,29 @@ import {
   modesHTIntervals,
   modesIntervals,
 } from 'src/config/modes';
-import { Note, notes } from 'src/config/notes';
-import { fourStrings, sixStrings } from 'src/config/tunings';
+import { BaseNote, baseNotes } from 'src/config/notes';
+import {
+  bassTunings,
+  guitarTunings,
+  lapSteelTunings,
+  ukuleleTunings,
+} from 'src/config/tunings';
 
-import { satisfies } from 'compare-versions';
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 import { useStorage } from 'src/hooks/useStorage';
 
 export type AppContextType = {
-  version: string;
   // Neck
   type: NeckType;
   setType: Dispatch<SetStateAction<NeckType>>;
   config: NeckConfig;
   // Tunnings
-  tunings: TuningType[];
-  tuning: TuningType;
-  setTuning: Dispatch<SetStateAction<TuningType>>;
+  tunings: Tunings;
+  tuning: Tuning;
+  setTuning: Dispatch<SetStateAction<Tuning>>;
   // Tonic
-  tonic: Note | '';
-  setTonic: Dispatch<SetStateAction<Note | ''>>;
+  tonic: BaseNote | '';
+  setTonic: Dispatch<SetStateAction<BaseNote | ''>>;
   // Display mode
   displayModes: DisplayModes;
   displayMode: DisplayMode | '';
@@ -45,7 +47,7 @@ export type AppContextType = {
   // Mode
   mode: Mode | '';
   setMode: Dispatch<SetStateAction<Mode | ''>>;
-  modeNotes: Note[];
+  modeNotes: BaseNote[];
   modeIntervals: Interval[];
 };
 
@@ -57,17 +59,16 @@ export interface AppContextProps {
 }
 
 export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
-  const [version, setVersion] = useStorage<string>('app-version');
   const [type, setType] = useStorage<NeckType>(
     'app-user-guitar-type',
-    'classic'
+    'guitar'
   );
   const { config } = useGuitarConfig(type);
-  const [tuning, setTuning] = useStorage<TuningType>(
+  const [tuning, setTuning] = useStorage<Tuning>(
     `app-user-${type}-tuning`,
     config.defaults.tuning
   );
-  const [tonic, setTonic] = useStorage<Note | ''>('app-user-tonic', '');
+  const [tonic, setTonic] = useStorage<BaseNote | ''>('app-user-tonic', '');
   const [mode, setMode] = useStorage<Mode | ''>('app-user-mode', '');
   const [displayMode, setDisplayMode] = useStorage<DisplayMode | ''>(
     'app-user-display-mode',
@@ -76,13 +77,15 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
 
   const tunings = useMemo(() => {
     switch (type) {
-      case 'bass':
-      case 'ukulele':
-        return fourStrings;
       default:
-      case 'classic':
+      case 'guitar':
+        return guitarTunings;
+      case 'bass':
+        return bassTunings;
       case 'lapsteel':
-        return sixStrings;
+        return lapSteelTunings;
+      case 'ukulele':
+        return ukuleleTunings;
     }
   }, [type]);
 
@@ -92,31 +95,17 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
       : [];
 
   const modeNotes = useMemo(() => {
-    const tonicIndex = notes.findIndex((n) => n === tonic);
-    const fromTonic = notes.slice(tonicIndex, notes.length);
-    const beforeTonic = notes.slice(0, tonicIndex);
+    const tonicIndex = baseNotes.findIndex((n) => n === tonic);
+    const fromTonic = baseNotes.slice(tonicIndex, baseNotes.length);
+    const beforeTonic = baseNotes.slice(0, tonicIndex);
     const tonicSorted = [...fromTonic, ...beforeTonic];
     const modeHalfToneInterval = modesHTIntervals[mode as Mode] ?? [];
     return tonicSorted.reduce(
       (res, n, i) => (modeHalfToneInterval.includes(i) ? [...res, n] : res),
-      [] as Note[]
+      [] as BaseNote[]
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [type, tuning, mode, tonic]);
-
-  const processUpdates = () => {
-    const envVersion = process?.env?.VITE_NETLIFY_CONTEXT ?? '';
-    if (envVersion !== version) {
-      const previousVersion = version;
-      setVersion(envVersion);
-      // Process upgrades
-      switch (true) {
-        case !version || satisfies(previousVersion, '<0.2.0'):
-          if (`${mode}` === 'pentatonicMinor') setMode('minorPentatonic');
-          break;
-      }
-    }
-  };
 
   useEffect(() => {
     if (!tuning) {
@@ -125,15 +114,9 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [config]);
 
-  useLayoutEffect(() => {
-    processUpdates();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <AppContext.Provider
       value={{
-        version,
         type,
         setType,
         config,

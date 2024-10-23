@@ -1,15 +1,15 @@
 import Box, { BoxProps } from '@mui/material/Box';
 import { Interval, colorsOfHTI } from 'src/config/modes';
 
-import { FC } from 'react';
-import { Note } from 'src/config/notes';
-import clsx from 'clsx';
 import { grey } from '@mui/material/colors';
+import clsx from 'clsx';
+import { FC } from 'react';
+import { BaseNote } from 'src/config/notes';
 import { useAppContext } from 'src/contexts/appContext';
 
 export type NoteMarkProps = BoxProps &
   WithSx & {
-    note?: Note;
+    note?: BaseNote;
     interval?: Interval;
     variant?: 'default' | 'text';
     emptyString?: boolean;
@@ -26,6 +26,7 @@ const NoteMark: FC<NoteMarkProps> = ({
   note,
   interval,
   onlyNote = false,
+  ...props
 }) => {
   const { displayMode } = useAppContext();
   const hasHash = note ? /#/.test(note) : undefined;
@@ -76,6 +77,7 @@ const NoteMark: FC<NoteMarkProps> = ({
         fontFamily: "'Instagram Sans Condensed', sans-serif",
         fontSize: noteSize,
         fontWeight: 600,
+        cursor: 'pointer',
         '& > span': {
           fontSize: '0.7em !important',
         },
@@ -114,6 +116,7 @@ const NoteMark: FC<NoteMarkProps> = ({
         isTonic,
         isText: variant === 'text',
       })}
+      {...props}
     >
       <span>{renderValue()}</span>
     </Box>

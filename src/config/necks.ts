@@ -1,4 +1,11 @@
-const classic: NeckConfig = {
+import {
+  bassTunings,
+  guitarTunings,
+  lapSteelTunings,
+  ukuleleTunings,
+} from './tunings';
+
+const guitar: NeckConfig = {
   board: {
     width: 1200,
     height: 180,
@@ -19,7 +26,7 @@ const classic: NeckConfig = {
     margin: 10,
   },
   defaults: {
-    tuning: ['E', 'A', 'D', 'G', 'B', 'E'],
+    tuning: guitarTunings.standard,
   },
 };
 
@@ -44,7 +51,7 @@ const lapsteel: NeckConfig = {
     margin: 10,
   },
   defaults: {
-    tuning: ['D', 'A', 'D', 'F#', 'A', 'D'],
+    tuning: lapSteelTunings.openD,
   },
 };
 
@@ -69,7 +76,7 @@ const bass: NeckConfig = {
     margin: 10,
   },
   defaults: {
-    tuning: ['E', 'A', 'D', 'G'],
+    tuning: bassTunings.standard,
   },
 };
 
@@ -94,12 +101,12 @@ const ukulele: NeckConfig = {
     margin: 10,
   },
   defaults: {
-    tuning: ['G', 'C', 'E', 'A'],
+    tuning: ukuleleTunings.standard,
   },
 };
 
 const necks = {
-  classic,
+  guitar,
   lapsteel,
   bass,
   ukulele,
