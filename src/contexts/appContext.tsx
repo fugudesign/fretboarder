@@ -1,29 +1,8 @@
-import {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useMemo,
-} from 'react';
-import {
-  DisplayMode,
-  DisplayModes,
-  displayModes,
-} from 'src/config/displayModes';
-import {
-  Interval,
-  Mode,
-  modesHTIntervals,
-  modesIntervals,
-} from 'src/config/modes';
+import { createContext, Dispatch, SetStateAction, useContext, useEffect, useMemo } from 'react';
+import { DisplayMode, DisplayModes, displayModes } from 'src/config/displayModes';
+import { Interval, Mode, modesHTIntervals, modesIntervals } from 'src/config/modes';
 import { BaseNote, baseNotes } from 'src/config/notes';
-import {
-  bassTunings,
-  guitarTunings,
-  lapSteelTunings,
-  ukuleleTunings,
-} from 'src/config/tunings';
+import { bassTunings, guitarTunings, lapSteelTunings, ukuleleTunings } from 'src/config/tunings';
 
 import { useGuitarConfig } from 'src/hooks/useGuitarConfig';
 import { useStorage } from 'src/hooks/useStorage';
@@ -59,21 +38,12 @@ export interface AppContextProps {
 }
 
 export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
-  const [type, setType] = useStorage<NeckType>(
-    'app-user-guitar-type',
-    'guitar'
-  );
+  const [type, setType] = useStorage<NeckType>('app-user-guitar-type', 'guitar');
   const { config } = useGuitarConfig(type);
-  const [tuning, setTuning] = useStorage<Tuning>(
-    `app-user-${type}-tuning`,
-    config.defaults.tuning
-  );
+  const [tuning, setTuning] = useStorage<Tuning>(`app-user-${type}-tuning`, config.defaults.tuning);
   const [tonic, setTonic] = useStorage<BaseNote | ''>('app-user-tonic', '');
   const [mode, setMode] = useStorage<Mode | ''>('app-user-mode', '');
-  const [displayMode, setDisplayMode] = useStorage<DisplayMode | ''>(
-    'app-user-display-mode',
-    ''
-  );
+  const [displayMode, setDisplayMode] = useStorage<DisplayMode | ''>('app-user-display-mode', '');
 
   const tunings = useMemo(() => {
     switch (type) {
@@ -90,9 +60,7 @@ export const AppContextProvider = ({ children, ...props }: AppContextProps) => {
   }, [type]);
 
   const modeIntervals =
-    mode !== '' && mode in modesIntervals
-      ? (modesIntervals[mode] as Interval[])
-      : [];
+    mode !== '' && mode in modesIntervals ? (modesIntervals[mode] as Interval[]) : [];
 
   const modeNotes = useMemo(() => {
     const tonicIndex = baseNotes.findIndex((n) => n === tonic);
