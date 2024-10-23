@@ -1,5 +1,3 @@
-import { Theme } from '@mui/material';
-
 export default {
   root: {
     flexGrow: 1,
@@ -27,12 +25,6 @@ export default {
     flexGrow: 1,
     flexDirection: 'row',
     alignItems: 'baseline',
-  },
-  version: {
-    marginLeft: (theme: Theme) => theme.spacing(1),
-    fontSize: '0.6em',
-    letterSpacing: '0.08em',
-    background: 'transparent',
   },
   brand: {
     ml: {

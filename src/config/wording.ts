@@ -1,6 +1,6 @@
 export default {
   instrument: {
-    classic: 'Guitar',
+    guitar: 'Guitar',
     lapsteel: 'Lapsteel Guitar',
     bass: 'Bass Guitar',
     ukulele: 'Ukulele',

@@ -1,4 +1,4 @@
-import { Box, Chip } from '@mui/material';
+import { Box } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -8,7 +8,7 @@ import InstallButton from '../InstallButton/InstallButton';
 import sx from './Navbar.styles';
 
 const Navbar: FC = () => {
-  const { version, type } = useAppContext();
+  const { type } = useAppContext();
   const backgroundImage = `/images/${type}-bg.png`;
 
   return (
@@ -30,7 +30,6 @@ const Navbar: FC = () => {
             <Typography component="div" sx={sx.brand}>
               FretBoarder
             </Typography>
-            <Chip sx={sx.version} size="small" label={version} />
           </Box>
           <Box>
             <InstallButton variant="contained">Install</InstallButton>

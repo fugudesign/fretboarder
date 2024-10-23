@@ -1,7 +1,14 @@
 import { Necks } from '../config/necks';
 
 declare global {
-  type TuningType = Note[];
+  type TuningType = BaseNote[];
+
+  type Tuning = {
+    name: string;
+    notes: Note[];
+  };
+
+  type Tunings = Record<string, Tuning>;
 
   type NeckType = Necks;
 
@@ -26,7 +33,7 @@ declare global {
       margin: number;
     };
     defaults: {
-      tuning: TuningType;
+      tuning: Tuning;
     };
   }
 }

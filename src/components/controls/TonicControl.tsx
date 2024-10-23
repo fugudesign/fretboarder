@@ -4,7 +4,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import { FC } from 'react';
-import { Note, notes } from 'src/config/notes';
+import { BaseNote, baseNotes } from 'src/config/notes';
 import { useAppContext } from 'src/contexts/appContext';
 
 type Props = {
@@ -16,11 +16,11 @@ const TonicControl: FC<Props> = ({ size, variant }) => {
   const { tonic, setTonic } = useAppContext();
 
   const handleChange = (e: SelectChangeEvent) => {
-    setTonic(e.target.value as Note);
+    setTonic(e.target.value as BaseNote);
   };
 
   const handleFocus = (e: React.FocusEvent<HTMLLIElement>) => {
-    setTonic(e.target.dataset.value as Note);
+    setTonic(e.target.dataset.value as BaseNote);
   };
 
   return (
@@ -34,7 +34,7 @@ const TonicControl: FC<Props> = ({ size, variant }) => {
         onChange={handleChange}
       >
         <MenuItem value="">None</MenuItem>
-        {notes.map((note) => (
+        {baseNotes.map((note) => (
           <MenuItem key={note} value={note} onFocus={handleFocus}>
             {note}
           </MenuItem>
