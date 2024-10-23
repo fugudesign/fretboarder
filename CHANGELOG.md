@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/fugudesign/fretboarder/compare/v1.1.2...v1.2.0) (2024-10-23)
+
+
+### Features
+
+* add default values for controls ([d14c71f](https://github.com/fugudesign/fretboarder/commit/d14c71f36cc68d4769d5f97e7aa9161d8715f55f))
+
 ## [1.1.2](https://github.com/fugudesign/fretboarder/compare/v1.1.1...v1.1.2) (2024-10-23)
 
 
