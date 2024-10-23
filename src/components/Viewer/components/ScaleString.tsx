@@ -41,6 +41,7 @@ const ScaleString: FC<ScaleStringProps> = ({ stringNote, stringIndex }) => {
   const playNote = (note: string) => {
     const now = Tone.now();
 
+    synth.set({ oscillator: { type: 'amtriangle' } });
     synth.triggerAttackRelease(note, '8n', now);
   };
 
