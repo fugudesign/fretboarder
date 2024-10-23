@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/fugudesign/fretboarder/compare/v1.1.0...v1.1.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* old localstorage bug ([38c8ed1](https://github.com/fugudesign/fretboarder/commit/38c8ed1337c50d595fcd9331637a0f32e5d29eef))
+
 # [1.1.0](https://github.com/fugudesign/fretboarder/compare/v1.0.10...v1.1.0) (2024-10-23)
 
 
